@@ -27,9 +27,9 @@ def get_env_or_raise(key):
 
 # 这些变量将由平台通过环境变量提供给应用，本地开发时需手动配置，详见：http://docs.open.oa.com/topics/company_tencent/python_framework_usage#29-配置环境变量
 # 应用 ID
-APP_CODE = 'helloworld123'
+APP_CODE = 'bktest123'
 # 应用用于调用云 API 的 Secret
-SECRET_KEY = '629ea554-c0de-4e68-bbcd-8b10c47cfaa0'
+SECRET_KEY = 'b0dc3ab9-347e-4a53-a4bb-21c02adb9874'
 
 # SaaS运行版本，如非必要请勿修改
 RUN_VER = 'open'
