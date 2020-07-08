@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/jquery.sumoselect-2.0.0/sumoselect.css" rel="stylesheet">
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/jquery.sumoselect-2.0.0/jquery.sumoselect.min.js"></script>
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/base/common.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/components/button.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tenc    ent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
+
+
+</head>
+<body>
+<!--HTML导航-->
+<div class="king-header king-header1 king-header-blue2">
+    <div class="king-header-inner">
+        <div class="king-header-brand">
+            <a href="javascript:;">
+                <img src="https://magicbox.bk.tencent.com/static_api/v3/bk/images/logo3.png" alt="" class="logo">
+            </a>
+        </div>
+        <div class="king-header-list list1">
+            <ul>
+                <li class="active">
+                    <a href="javascript:" class="list-home"><span>执行任务</span></a>
+                </li>
+                <li>
+                    <a href="/record"><span>任务记录</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="king-layout2-main mt15" style="width:960px;">
+    <form class="form-horizontal">
+        <div class="form-group clearfix " style="width:480px;">
+            <label class="col-sm-3 control-label bk-lh30 pt0">选择业务：</label>
+            <div class="col-sm-9">
+                <select name="" id="" class="form-control bk-valign-top">
+                    {% for job_name in job_names %}
+                        <option value={{ job_name.id }}>{{ job_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group clearfix " style="width:480px;">
+            <label class="col-sm-3 control-label bk-lh30 pt0">选择脚本：</label>
+            <div class="col-sm-9">
+                <select name="" id="" class="form-control bk-valign-top">
+                    {% for task in tasks %}
+                        <option value="{{ task.id }}">{{ task.scriptname }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group clearfix">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="button" class="king-btn mr10  king-success">确定</button>
+            </div>
+        </div>
+    </form>
+
+    <table class="table table-bordered table7_demo " id="table_demo2">
+    <div class="panel-heading"> <i class="fa fa-list-ul"></i> 主机列表
+    </div>
+    <thead>
+        <tr>
+            <th style="width: 50px">
+                选择
+            </th>
+            <th>序号</th>
+            <th>IP</th>
+            <th>操作系统</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for host_data in host_datas %}
+        <tr>
+            <td>
+                <input type="checkbox" value="">
+            </td>
+            <td>{{ host_data.hostid }}</td>
+            <td>{{ host_data.hostip }}</td>
+            <td>{{ host_data.hostos }}</td>
+            <td>
+                <button class="btn btn-xs btn-success" title="激活">
+                    <i class="glyphicon glyphicon-ok"></i>
+                </button>
+                <button class="btn btn-xs btn-warning" title="编辑">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </button>
+                <button class="btn btn-xs btn-danger" title="删除">
+                    <i class="glyphicon glyphicon-remove"></i>
+                </button>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<div class="row" align="right">
+    <nav aria-label="Page navigation">
+        <ul class="pagination pagination-lg">
+            {% if host_datas.has_previous %}
+                <li>
+                    <a href="?page={{ host_datas.previous_page_number }}" aria-label="Previous">
+                        <span aria-hidden="true"><<</span>
+                    </a>
+                </li>
+            {% endif %}
+        {% for num in page_range %}git add README.mdgit remote add origin https://github.com/0-ng/BK.git
+            <li {% ifequal num page %} class="active" {% endifequal %}>
+            <a href="?page={{ num }}">{{ num }}</a>
+            </li>
+        {% endfor %}
+        {% if host_datas.has_next %}
+                <li>
+                    <a href="?page={{ host_datas.next_page_number }}" aria-label="Next">
+                        <span aria-hidden="true">>></span>
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</div>
+
+</div>
+
+
+
+
+
+<script type="text/javascript">
+    $('#table_demo2').find('input[name="checkall"]').click(function(){
+            var checked = $(this).prop('checked');
+            $('#table_demo2>tbody input').prop('checked', checked);
+        });
+        $('#table_demo2').find(':checkbox').on('click', function(){
+            if(!this.checked){
+                $('#table_demo2').find('input[name="checkall"]').prop('checked',false);
+            }
+        });
+        $('#table_demo2').find('.glyphicon-remove').parent('button').click(function(){
+            if(confirm('确定要删除？')){
+                $(this).closest('tr').remove();
+            }
+        });
+        $('#deleteAll').click(function(event) {
+            var records = $('#table_demo2>tbody input:checked').closest('tr');
+            if (!records.length){
+                alert('请选择要删除的记录！');
+                return false;
+            }
+            if(confirm('确定要删除？')){
+                records.remove();
+            }
+        });
+</script>
+
+
+
+
+<!--JS-->
+<script src="https://magicbox.bk.tencent.com/static_api/v3/assets/jquery.sumoselect-2.0.0/jquery.sumoselect.min.js"></script>
+
+<script type="text/javascript">
+$(function () {
+    //sumoselect_demo1_js_start
+    $('#sumoselect_demo1 select').SumoSelect({
+        placeholder: 'This is a placeholder'
+    });
+    //sumoselect_demo1_js_end
+
+    //sumoselect_demo2_js_start
+    $('#sumoselect_demo2 select').SumoSelect({
+        placeholder: 'This is a placeholder'
+    });
+    //sumoselect_demo2_js_end
+
+    //sumoselect_demo3_js_start
+    //显示ok clear 按钮
+    $('#sumoselect_demo3 select').SumoSelect({
+        okCancelInMulti: true
+    });
+    //sumoselect_demo3_js_end
+
+    //sumoselect_demo4_js_start
+    //全选
+    $('#sumoselect_demo4 select').SumoSelect({
+        okCancelInMulti: true,
+        selectAll: true
+    });
+    //sumoselect_demo4_js_end
+});
+
+</script>
+</body>
+</html>

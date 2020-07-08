@@ -1,0 +1,220 @@
+<html class="k-webkit k-webkit80"><head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <!-- 若您需要使用Kendo UI Professional，请联系版权人获得合法的授权或许可。 -->
+
+    <!-- Bootstrap css -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/css/bootstrap.min.css" rel="stylesheet">
+    <!-- kendo ui css -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.common.min.css" rel="stylesheet">
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/styles/kendo.default.min.css" rel="stylesheet">
+    <!-- font-awesome -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/assets/fontawesome/css/font-awesome.css" rel="stylesheet">
+    <!--蓝鲸提供的公用样式库 -->
+    <link href="https://magicbox.bk.tencent.com/static_api/v3/bk/css/bk.css" rel="stylesheet">
+    <!-- 如果要使用Bootstrap的js插件，必须先调入jQuery -->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/jquery-1.10.2.min.js"></script>
+    <!-- 包括所有bootstrap的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <!-- 包括所有kendoui的js插件或者可以根据需要使用的js插件调用　-->
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/kendoui-2015.2.624/js/kendo.all.min.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/bk/js/bk.js"></script>
+    <!-- 以下两个插件用于在IE8以及以下版本浏览器支持HTML5元素和媒体查询，如果不需要用可以移除 -->
+    <!--[if lt IE 9]>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/html5shiv.min.js"></script>
+    <script src="https://magicbox.bk.tencent.com/static_api/v3/assets/js/respond.min.js"></script>
+    <![endif]-->
+    <!-- 数据埋点统计 -->
+    <script src="http://magicbox.bk.tencent.com/static_api/analysis.js"></script>
+
+
+<script type="text/javascript">
+    //日期选择器(Bootstrap)-2，日期选择
+    $('#plugin9_demo2').datetimepicker({
+        language:  'zh-TW',
+        weekStart: 1,
+        todayBtn:  true,
+        autoclose: true,
+        todayHighlight: true,
+        startView: 2,
+        minView: 2,
+        forceParse: false,
+        format:"yyyy-mm-dd",
+    });
+</script>
+</head>
+<body>
+<!--HTML-->
+
+<div class="king-header king-header1 king-header-blue2">
+    <div class="king-header-inner">
+        <div class="king-header-brand">
+            <a href="javascript:;">
+                <img src="https://magicbox.bk.tencent.com/static_api/v3/bk/images/logo3.png" alt="" class="logo">
+            </a>
+        </div>
+        <div class="king-header-list list1">
+            <ul>
+                <li>
+                    <a href="/tasks"><span>执行任务</span></a>
+                </li>
+                <li class="active" class="list-home">
+                    <a href="javascript:"><span>任务记录</span></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<br>
+
+<div class="king-layout2-main mt15" style="width:960px;">
+    <form class="form-horizontal">
+        <div class="form-group clearfix " style="width:480px;">
+            <label class="col-sm-3 control-label bk-lh30 pt0">业务：</label>
+            <div class="col-sm-9">
+                <select name="" id="" class="form-control bk-valign-top">
+                    <option value="选择项1">选择项1</option>
+                    <option value="选择项2">选择项2</option>
+                    <option value="选择项3">选择项3</option>
+                    <option value="选择项4">选择项4</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group clearfix " style="width:480px;">
+            <label class="col-sm-3 control-label bk-lh30 pt0">用户：</label>
+            <div class="col-sm-9">
+                <select name="" id="" class="form-control bk-valign-top">
+                    <option value="选择项1">选择项1</option>
+                    <option value="选择项2">选择项2</option>
+                    <option value="选择项3">选择项3</option>
+                    <option value="选择项4">选择项4</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group clearfix " style="width:480px;">
+            <label class="col-sm-3 control-label bk-lh30 pt0">任务：</label>
+            <div class="col-sm-9">
+                <select name="" id="" class="form-control bk-valign-top">
+                    <option value="选择项1">选择项1</option>
+                    <option value="选择项2">选择项2</option>
+                    <option value="选择项3">选择项3</option>
+                    <option value="选择项4">选择项4</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group clearfix" style="width:480px;">
+            <label class="col-sm-3 control-label bk-lh30 pt0">日期：</label>
+            <div class="input-group date " id="plugin9_demo2" data-date="" data-date-format="dd MM yyyy" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                <input class="form-control" size="16" type="text" value="">
+                <input type="hidden" id="dtp_input2" value="" /><br/>
+            </div>
+        </div>
+
+
+<!--JS-->
+
+        <div class="form-group clearfix">
+            <div class="col-sm-9 col-sm-offset-3">
+                <button type="button" class="king-btn mr10  king-success">提交</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="king-layout2-main mt15" style="width:960px;">
+<table class="table table-out-bordered table-bordered table-hover" style="width:960px;">
+    <thead>
+        <tr>
+            <th style="width: 7%">业务</th>
+            <th style="width:20%;">用户</th>
+            <th>任务</th>
+            <th>操作时间</th>
+            <th>机器数</th>
+            <th>状态</th>
+            <th>参数</th>
+            <th>详情</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>业务1</td>
+            <td>用户1</td>
+            <td>任务1</td>
+            <td>操作时间1</td>
+            <td>机器数1</td>
+            <td>状态1</td>
+            <td>参数1</td>
+            <td>详情1</td>
+        </tr>
+        <tr>
+            <td>业务1</td>
+            <td>用户1</td>
+            <td>任务1</td>
+            <td>操作时间1</td>
+            <td>机器数1</td>
+            <td>状态1</td>
+            <td>参数1</td>
+            <td>详情1</td>
+        </tr>
+        <tr>
+            <td>业务1</td>
+            <td>用户1</td>
+            <td>任务1</td>
+            <td>操作时间1</td>
+            <td>机器数1</td>
+            <td>状态1</td>
+            <td>参数1</td>
+            <td>详情1</td>
+        </tr>
+        <tr>
+            <td>业务1</td>
+            <td>用户1</td>
+            <td>任务1</td>
+            <td>操作时间1</td>
+            <td>机器数1</td>
+            <td>状态1</td>
+            <td>参数1</td>
+            <td>详情1</td>
+        </tr>
+        <tr>
+            <td>业务1</td>
+            <td>用户1</td>
+            <td>任务1</td>
+            <td>操作时间1</td>
+            <td>机器数1</td>
+            <td>状态1</td>
+            <td>参数1</td>
+            <td>详情1</td>
+        </tr>
+    </tbody>
+</table>
+
+</div>
+
+<script src="https://magicbox.bk.tencent.com/static_api/v3/assets/datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="https://magicbox.bk.tencent.com/static_api/v3/assets/datetimepicker/js/locales/bootstrap-datetimepicker.zh-TW.js" charset="UTF-8"></script>
+<script type="text/javascript">
+
+    //plugin9_demo2_js_start
+    //日期选择器(Bootstrap)-2，日期选择
+    $('#plugin9_demo2').datetimepicker({
+        language:  'zh-TW',
+        weekStart: 1,
+        todayBtn:  true,
+        autoclose: true,
+        todayHighlight: true,
+        startView: 2,
+        minView: 2,
+        forceParse: false,
+        format:"yyyy-mm-dd",
+    });
+    //plugin9_demo2_js_end
+
+</script>
+</body>
+</html>
