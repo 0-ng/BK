@@ -1,0 +1,8 @@
+{% for hosts in data %}
+    <tr>
+        <td>{{ hosts.bk_host_innerip }}</td>
+        <td>{{ hosts.bk_os_name }}</td>
+        <td>{{ hosts.bk_host_name }}</td>
+        <td>{{ hosts.bk_cloud_id }}</td>
+    </tr>
+{% endfor %}

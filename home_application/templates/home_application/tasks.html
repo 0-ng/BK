@@ -45,23 +45,39 @@
         <div class="form-group clearfix " style="width:480px;">
             <label class="col-sm-3 control-label bk-lh30 pt0">选择业务：</label>
             <div class="col-sm-9">
-                <select name="" id="" class="form-control bk-valign-top">
-                    {% for job_name in job_names %}
-                        <option value={{ job_name.id }}>{{ job_name }}</option>
+                <select name="" id="" class="form-control bk-valign-top ele">
+{#                    {% for job_name in job_names %}#}
+{#                        <option value={{ job_name.id }}>{{ job_name.script }}</option>#}
+{#                    {% endfor %}#}
+                    {% for info in biz %}
+                        <option value={{ info.bk_biz_id }}>{{ info.bk_biz_name }}</option>
                     {% endfor %}
                 </select>
             </div>
         </div>
         <div class="form-group clearfix " style="width:480px;">
-            <label class="col-sm-3 control-label bk-lh30 pt0">选择脚本：</label>
+            <label class="col-sm-3 control-label bk-lh30 pt0">选择集群：</label>
             <div class="col-sm-9">
-                <select name="" id="" class="form-control bk-valign-top">
-                    {% for task in tasks %}
-                        <option value="{{ task.id }}">{{ task.scriptname }}</option>
-                    {% endfor %}
-                </select>
+                <div class="col-sm-4">
+                    <select id="select_demo2" class="form-control bk-valign-top ele1">
+
+{#                    {% for info in set %}#}
+{#                        <option value={{ info.bk_biz_id }}>{{ info.bk_biz_name }}</option>#}
+{#                    {% endfor %}#}
+                    </select>
+                </div>
             </div>
         </div>
+{#        <div class="form-group clearfix " style="width:480px;">#}
+{#            <label class="col-sm-3 control-label bk-lh30 pt0">选择脚本：</label>#}
+{#            <div class="col-sm-9">#}
+{#                <select name="" id="" class="form-control bk-valign-top ele1">#}
+{#                    {% for task in scripts %}#}
+{#                        <option value="{{ task.id }}">{{ task.scriptname }}</option>#}
+{#                    {% endfor %}#}
+{#                </select>#}
+{#            </div>#}
+{#        </div>#}
         <div class="form-group clearfix">
             <div class="col-sm-9 col-sm-offset-3">
                 <button type="button" class="king-btn mr10  king-success">确定</button>
@@ -74,37 +90,14 @@
     </div>
     <thead>
         <tr>
-            <th style="width: 50px">
-                选择
-            </th>
-            <th>序号</th>
-            <th>IP</th>
-            <th>操作系统</th>
-            <th>操作</th>
+            <th>内网IP</th>
+            <th>系统名</th>
+            <th>主机名</th>
+            <th>云区域</th>
         </tr>
     </thead>
     <tbody>
-    {% for host_data in host_datas %}
-        <tr>
-            <td>
-                <input type="checkbox" value="">
-            </td>
-            <td>{{ host_data.hostid }}</td>
-            <td>{{ host_data.hostip }}</td>
-            <td>{{ host_data.hostos }}</td>
-            <td>
-                <button class="btn btn-xs btn-success" title="激活">
-                    <i class="glyphicon glyphicon-ok"></i>
-                </button>
-                <button class="btn btn-xs btn-warning" title="编辑">
-                    <i class="glyphicon glyphicon-edit"></i>
-                </button>
-                <button class="btn btn-xs btn-danger" title="删除">
-                    <i class="glyphicon glyphicon-remove"></i>
-                </button>
-            </td>
-        </tr>
-    {% endfor %}
+
     </tbody>
 </table>
 
@@ -119,7 +112,7 @@
                     </a>
                 </li>
             {% endif %}
-        {% for num in page_range %}git add README.mdgit remote add origin https://github.com/0-ng/BK.git
+        {% for num in page_range %}
             <li {% ifequal num page %} class="active" {% endifequal %}>
             <a href="?page={{ num }}">{{ num }}</a>
             </li>
@@ -137,35 +130,81 @@
 
 </div>
 
-
-
-
-
 <script type="text/javascript">
-    $('#table_demo2').find('input[name="checkall"]').click(function(){
-            var checked = $(this).prop('checked');
-            $('#table_demo2>tbody input').prop('checked', checked);
-        });
-        $('#table_demo2').find(':checkbox').on('click', function(){
-            if(!this.checked){
-                $('#table_demo2').find('input[name="checkall"]').prop('checked',false);
+    $(".ele").change(function() {
+        $.ajax({
+            url: '{{ SITE_URL }}api/get_set/',
+            type: 'GET',
+            data:{
+                'bk_biz_id': $('.ele').val(),
+                'csrfmiddlewaretoken': "{{ csrf_token }}"
+            },
+            success: function(res) {
+                if (res.result) {
+                    $('#select_demo2').html(res.data)
+                } else {
+                    alert(res.message);
+                }
             }
-        });
-        $('#table_demo2').find('.glyphicon-remove').parent('button').click(function(){
-            if(confirm('确定要删除？')){
-                $(this).closest('tr').remove();
+        })
+    });
+    $(".ele1").change(function() {
+        $.ajax({
+            url: '{{ SITE_URL }}api/get_host/',
+            type: 'GET',
+            data:{
+                'bk_biz_id': $('.ele').val(),
+                'bk_set_id': $('.ele1').val(),
+                'csrfmiddlewaretoken': "{{ csrf_token }}"
+            },
+            success: function(res) {
+                if (res.result) {
+                    $('#table_demo2 tbody').html(res.data)
+                } else {
+                    alert(res.message);
+                }
             }
-        });
-        $('#deleteAll').click(function(event) {
-            var records = $('#table_demo2>tbody input:checked').closest('tr');
-            if (!records.length){
-                alert('请选择要删除的记录！');
-                return false;
+        })
+    });
+    $('.king-success').click(function () {
+        $.ajax({
+            url: '{{ SITE_URL }}api/execute/',
+            type: 'POST',
+            data:{
+                "bk_biz_id":$('.ele').val(),
+                "bk_set_id":$('.ele1').val(),
+                'csrfmiddlewaretoken': "{{ csrf_token }}"
+            },
+            success: function (response) {
+                console.log(response["result","message","data"]);
+                if(response["result"]){
+                    var d = dialog({
+                        width: 260,
+                        title: '提示',
+                        okValue: '查看任务结果',
+                        content: '<div class="king-notice-box king-notice-success"><p class="king-notice-text">任务提交成功！</p></div>',
+                        cancelValue: '继续执行任务',
+                        ok: function() {
+                            window.location.href="{{ SITE_URL }}record"
+                        },
+                        cancel: function() {
+                            location.reload();
+                            }
+                    });
+                    d.show();
+                }else {
+                    var d = dialog({
+                        width: 260,
+                        title: '提示',
+                        ok: function() {location.reload();},
+                        okValue: '确定',
+                        content: '<div class="king-notice-box king-notice-fail"><p class="king-notice-text">任务提交失败！</p></div>',
+                    });
+                    d.show();
+                }
             }
-            if(confirm('确定要删除？')){
-                records.remove();
-            }
-        });
+        })
+    });
 </script>
 
 
